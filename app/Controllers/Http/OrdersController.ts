@@ -31,7 +31,7 @@ export default class OrderController {
    */
   public async store({ request, response }: HttpContextContract) {
     try {
-      const orderData = request.only(['user_id', 'total_amount', 'status']) // Adjust fields as needed
+      const orderData = request.only(['user_id', 'total_amount', 'status'])
       const order = await Order.create(orderData)
       return response.status(201).json({ message: 'Order created successfully', data: order })
     } catch (error) {
@@ -45,7 +45,7 @@ export default class OrderController {
   public async update({ params, request, response }: HttpContextContract) {
     try {
       const order = await Order.findOrFail(params.id)
-      const orderData = request.only(['total_amount', 'status']) // Adjust fields as needed
+      const orderData = request.only(['total_amount', 'status'])
       order.merge(orderData)
       await order.save()
       return response.json({ message: 'Order updated successfully', data: order })

@@ -33,7 +33,7 @@ export default class OrderItemsController {
     try {
       const orderItemData = request.only(['productId', 'amount'])
       const orderItem = await OrderItem.create(orderItemData)
-      await orderItem.load('product') // preload the product relation
+      await orderItem.load('product')
       return response.status(201).json({ message: 'Order item created successfully', data: orderItem })
     } catch (error) {
       return response.status(500).json({ message: 'Error creating order item', error: error.message })

@@ -31,7 +31,7 @@ export default class CartItemController {
    */
   public async store({ request, response }: HttpContextContract) {
     try {
-      const cartItemData = request.only(['product_id', 'quantity', 'user_id']) // Adjust fields as needed
+      const cartItemData = request.only(['product_id', 'quantity', 'user_id'])
       const cartItem = await CartItem.create(cartItemData)
       return response.status(201).json({ message: 'CartItem created successfully', data: cartItem })
     } catch (error) {
@@ -45,7 +45,7 @@ export default class CartItemController {
   public async update({ params, request, response }: HttpContextContract) {
     try {
       const cartItem = await CartItem.findOrFail(params.id)
-      const cartItemData = request.only(['quantity']) // Adjust fields as needed
+      const cartItemData = request.only(['quantity'])
       cartItem.merge(cartItemData)
       await cartItem.save()
       return response.json({ message: 'CartItem updated successfully', data: cartItem })
