@@ -1,13 +1,29 @@
-import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, belongsTo, BelongsTo, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
+import User from 'App/Models/User'
+import OrderItem from './OrderItem'
 
 export default class Order extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  declare id: number
 
-  @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  @column()
+  declare userId: number
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
+  @column()
+  declare status: string
+
+  @column()
+  declare paymentMethod: string
+
+  @column()
+  declare createdAt: Date
+
+  @column()
+  declare updatedAt: Date
+
+  @belongsTo(() => User)
+  declare user: BelongsTo<typeof User>
+
+  @hasMany(() => OrderItem)
+  declare orderItem: HasMany<typeof OrderItem>
 }

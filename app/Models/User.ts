@@ -1,13 +1,33 @@
-import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, hasMany, HasMany, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
+import Order from 'App/Models/Order'
+import CartItem from 'App/Models/CartItem'
+//import DeliveryAddress from 'App/Models/DeliveryAddress'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  declare id: number
 
-  @column.dateTime({ autoCreate: true })
-  public createdAt: DateTime
+  @column()
+  declare username: string
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  public updatedAt: DateTime
+  @column()
+  declare email: string
+
+  @column()
+  declare password: string
+
+  @column()
+  declare createdAt: Date
+
+  @column()
+  declare updatedAt: Date
+
+  @hasMany(() => Order)
+  declare orders: HasMany<typeof Order>
+
+  @hasMany(() => CartItem)
+  declare cartItems: HasMany<typeof CartItem>
+
+  /* @hasOne(() => DeliveryAddress)
+  declare deliveryAddress: HasOne<typeof DeliveryAddress> */
 }
