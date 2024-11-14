@@ -13,9 +13,6 @@ export default class Products extends BaseSchema {
       table.string('category').notNullable()
       table.boolean('is_active').defaultTo(true)
       table.string('image_url').nullable()
-      /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
-       */
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

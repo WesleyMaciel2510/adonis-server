@@ -10,6 +10,9 @@ export default class Order extends BaseModel {
   declare userId: number
 
   @column()
+  declare totalPrice: number 
+  
+  @column()
   declare status: string
 
   @column()

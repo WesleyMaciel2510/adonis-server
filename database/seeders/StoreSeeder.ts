@@ -1,9 +1,15 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
-import Product from '../../app/Models/product'
+import Store from 'App/Models/Store'
 
-export default class ProductSeeder extends BaseSeeder {
+export default class StoreSeeder extends BaseSeeder {
   public async run () {
-    await Product.create({
+    const store = await Store.create({
+      name: 'Test Store',
+      description: 'A store for testing purposes.',
+      location: '123 Test Street',
+    })
+
+    await store.related('products').create({
       name: 'Sample Product',
       description: 'This is a test product for testing purposes.',
       price: 19.99,

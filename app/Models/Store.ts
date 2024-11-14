@@ -1,5 +1,6 @@
-import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, hasMany, HasMany, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
 import Product from 'App/Models/product'
+import User from './User'
 
 export default class Store extends BaseModel {
   @column({ isPrimary: true })
@@ -22,4 +23,7 @@ export default class Store extends BaseModel {
 
   @hasMany(() => Product)
   declare products: HasMany<typeof Product>
+
+  @hasOne(() => User)
+  declare user: HasOne<typeof User>
 }

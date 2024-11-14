@@ -1,7 +1,6 @@
 import { BaseModel, column, hasMany, HasMany, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
 import Order from 'App/Models/Order'
 import CartItem from 'App/Models/CartItem'
-//import DeliveryAddress from 'App/Models/DeliveryAddress'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -28,6 +27,4 @@ export default class User extends BaseModel {
   @hasMany(() => CartItem)
   declare cartItems: HasMany<typeof CartItem>
 
-  /* @hasOne(() => DeliveryAddress)
-  declare deliveryAddress: HasOne<typeof DeliveryAddress> */
 }
