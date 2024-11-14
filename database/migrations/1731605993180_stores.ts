@@ -9,9 +9,8 @@ export default class Stores extends BaseSchema {
       table.string('name').notNullable()
       table.text('description').notNullable()
       table.string('location').notNullable()
-      table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE') 
-      table.timestamp('created_at', { useTz: true }).notNullable()
-      table.timestamp('updated_at', { useTz: true }).notNullable()
+      table.timestamp('created_at', { useTz: true })
+      table.timestamp('updated_at', { useTz: true })
     })
   }
 

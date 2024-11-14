@@ -10,8 +10,8 @@ export default class Orders extends BaseSchema {
       table.decimal('total_price', 12, 2).notNullable()
       table.string('status').defaultTo('pending')
       table.string('payment_method').notNullable()
-      table.timestamp('created_at', { useTz: true }).notNullable()
-      table.timestamp('updated_at', { useTz: true }).notNullable()
+      table.timestamp('created_at', { useTz: true })
+      table.timestamp('updated_at', { useTz: true })
     })
   }
 

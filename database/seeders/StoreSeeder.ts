@@ -17,5 +17,6 @@ export default class StoreSeeder extends BaseSeeder {
       category: 'Test Category',
       imageUrl: 'http://example.com/sample-product.jpg',
     })
+
   }
 }

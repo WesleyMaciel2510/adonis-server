@@ -24,6 +24,4 @@ export default class Store extends BaseModel {
   @hasMany(() => Product)
   declare products: HasMany<typeof Product>
 
-  @hasOne(() => User)
-  declare user: HasOne<typeof User>
 }

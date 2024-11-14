@@ -38,7 +38,7 @@ export default class Product extends BaseModel {
   declare updatedAt: DateTime
 
   @hasMany(() => Order)
-  declare orderItems: HasMany<typeof Order>
+  declare order: HasMany<typeof Order>
 
   @belongsTo(() => Store)
   declare store: BelongsTo<typeof Store>
