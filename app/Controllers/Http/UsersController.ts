@@ -31,7 +31,7 @@ export default class UserController {
    */
   public async store({ request, response }: HttpContextContract) {
     try {
-      const userData = request.only(['username', 'email', 'password']) 
+      const userData = request.only(['username', 'name', 'email', 'password'])
       const user = await User.create(userData)
       return response.status(201).json({ message: 'User created successfully', data: user })
     } catch (error) {
@@ -45,7 +45,7 @@ export default class UserController {
   public async update({ params, request, response }: HttpContextContract) {
     try {
       const user = await User.findOrFail(params.id)
-      const userData = request.only(['username', 'email', 'password']) 
+      const userData = request.only(['username', 'name', 'email', 'password'])
       user.merge(userData)
       await user.save()
       return response.json({ message: 'User updated successfully', data: user })
@@ -55,8 +55,8 @@ export default class UserController {
   }
 
   /**
- * Delete a user by its ID.
- */
+   * Delete a user by its ID.
+   */
   public async destroy({ params, response }: HttpContextContract) {
     try {
       const user = await User.findOrFail(params.id)
