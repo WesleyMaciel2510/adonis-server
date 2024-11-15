@@ -61,7 +61,7 @@ export default class StoreController {
     try {
       const store = await Store.findOrFail(params.id)
       await store.delete()
-      return response.status(204)
+      return response.status(200).json({ message: 'Store Deleted Successfully' })
     } catch (error) {
       return response.status(500).json({ message: 'Error deleting store', error: error.message })
     }

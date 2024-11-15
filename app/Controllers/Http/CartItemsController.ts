@@ -61,7 +61,7 @@ export default class CartItemController {
     try {
       const cartItem = await CartItem.findOrFail(params.id)
       await cartItem.delete()
-      return response.status(204)
+      return response.status(200).json({ message: 'CartItem Deleted Successfully' })
     } catch (error) {
       return response.status(500).json({ message: 'Error deleting cart item', error: error.message })
     }

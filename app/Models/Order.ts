@@ -4,29 +4,29 @@ import OrderItem from './OrderItem'
 
 export default class Order extends BaseModel {
   @column({ isPrimary: true })
-  declare id: number
+  public declare id: number
 
   @column()
-  declare userId: number
+  public declare userId: number
 
   @column()
-  declare totalPrice: number 
-  
-  @column()
-  declare status: string
+  public declare totalPrice: number
 
   @column()
-  declare paymentMethod: string
+  public declare status: string
 
   @column()
-  declare createdAt: Date
+  public declare paymentMethod: string
 
   @column()
-  declare updatedAt: Date
+  public declare createdAt: Date
+
+  @column()
+  public declare updatedAt: Date
 
   @belongsTo(() => User)
-  declare user: BelongsTo<typeof User>
+  public declare user: BelongsTo<typeof User>
 
   @hasMany(() => OrderItem)
-  declare orderItem: HasMany<typeof OrderItem>
+  public declare orderItem: HasMany<typeof OrderItem>
 }

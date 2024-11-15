@@ -1,27 +1,25 @@
 import { BaseModel, column, hasMany, HasMany, HasOne, hasOne } from '@ioc:Adonis/Lucid/Orm'
-import Product from 'App/Models/product'
-import User from './User'
+import Product from 'App/Models/Product'
 
 export default class Store extends BaseModel {
   @column({ isPrimary: true })
-  declare id: number
+  public declare id: number
 
   @column()
-  declare name: string
+  public declare name: string
 
   @column()
-  declare description: string
+  public declare description: string
 
   @column()
-  declare location: string
+  public declare location: string
 
   @column()
-  declare createdAt: Date
+  public declare createdAt: Date
 
   @column()
-  declare updatedAt: Date
+  public declare updatedAt: Date
 
   @hasMany(() => Product)
-  declare products: HasMany<typeof Product>
-
+  public declare products: HasMany<typeof Product>
 }

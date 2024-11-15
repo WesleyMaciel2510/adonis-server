@@ -63,7 +63,7 @@ export default class ProductController {
     try {
       const product = await Product.findOrFail(params.id)
       await product.delete()
-      return response.status(204)
+      return response.status(200).json({ message: 'Product Deleted Successfully' })
     } catch (error) {
       return response.status(500).json({ message: 'Error deleting product', error: error.message })
     }

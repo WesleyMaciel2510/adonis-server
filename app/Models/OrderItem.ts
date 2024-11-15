@@ -1,5 +1,5 @@
 import { BaseModel, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
-import Product from 'App/Models/product'
+import Product from 'App/Models/Product'
 import Order from 'App/Models/Order'
 
 export default class OrderItem extends BaseModel {
@@ -11,7 +11,7 @@ export default class OrderItem extends BaseModel {
 
   @column()
   public orderId: number
-  
+
   @column()
   public productId: number
 

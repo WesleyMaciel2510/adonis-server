@@ -31,7 +31,7 @@ export default class OrderController {
    */
   public async store({ request, response }: HttpContextContract) {
     try {
-      const orderData = request.only(['user_id', 'total_amount', 'status'])
+      const orderData = request.only(['userId', 'totalPrice', 'status', 'paymentMethod'])
       const order = await Order.create(orderData)
       return response.status(201).json({ message: 'Order created successfully', data: order })
     } catch (error) {
@@ -61,7 +61,7 @@ export default class OrderController {
     try {
       const order = await Order.findOrFail(params.id)
       await order.delete()
-      return response.status(204)
+      return response.status(200).json({ message: 'Order Deleted Successfully' })
     } catch (error) {
       return response.status(500).json({ message: 'Error deleting order', error: error.message })
     }

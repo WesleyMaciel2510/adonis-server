@@ -63,7 +63,7 @@ export default class OrderItemsController {
     try {
       const orderItem = await OrderItem.findOrFail(params.id)
       await orderItem.delete()
-      return response.status(204)
+      return response.status(200).json({ message: 'OrderItem Deleted Successfully' })
     } catch (error) {
       return response.status(500).json({ message: 'Error deleting order item', error: error.message })
     }

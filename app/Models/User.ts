@@ -1,33 +1,32 @@
-import { BaseModel, column, hasMany, HasMany, hasOne, HasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import Order from 'App/Models/Order'
 import CartItem from 'App/Models/CartItem'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
-  declare id: number
+  public declare id: number
 
   @column()
-  declare username: string
+  public declare username: string
 
   @column()
-  declare name: string
+  public declare name: string
 
   @column()
-  declare email: string
+  public declare email: string
 
   @column()
-  declare password: string
+  public declare password: string
 
   @column()
-  declare createdAt: Date
+  public declare createdAt: Date
 
   @column()
-  declare updatedAt: Date
+  public declare updatedAt: Date
 
   @hasMany(() => Order)
-  declare orders: HasMany<typeof Order>
+  public declare orders: HasMany<typeof Order>
 
   @hasMany(() => CartItem)
-  declare cartItems: HasMany<typeof CartItem>
-
+  public declare cartItems: HasMany<typeof CartItem>
 }
