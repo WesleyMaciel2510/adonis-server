@@ -8,7 +8,7 @@ export default class UserSeeder extends BaseSeeder {
       {
         username: 'wesley2510',
         email: 'wesleymaciel2500@gmail.com',
-        password: await Hash.make('test123'), // Hashing the password
+        password: 'test123',
         name: 'Wesley Maciel',
       },
       {
