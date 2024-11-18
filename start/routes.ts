@@ -30,8 +30,18 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', async () => {
-  return { hello: 'world'}
+  return { hello: 'world' }
 })
+
+// Auth routes, using the auth middleware for logout
+Route.group(() => {
+  Route.post('/register', 'AuthController.register')
+  Route.post('/login', 'AuthController.login')
+  Route.post('/logout', 'AuthController.logout').middleware('auth')
+}).prefix('/auth')
+
+// Add the /dashboard route that uses the auth middleware
+Route.get('/dashboard', 'UserController.dashboard').middleware('auth')
 
 // Routes for CartItemsController
 Route.group(() => {
@@ -62,4 +72,3 @@ Route.group(() => {
 Route.group(() => {
   Route.resource('/users', 'UsersController').apiOnly()
 }).prefix('/api')
-

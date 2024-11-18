@@ -10,7 +10,9 @@ export default class CartItemController {
       const cartItems = await CartItem.all()
       return response.json({ data: cartItems })
     } catch (error) {
-      return response.status(500).json({ message: 'Error fetching cart items', error: error.message })
+      return response
+        .status(500)
+        .json({ message: 'Error fetching cart items', error: error.message })
     }
   }
 
@@ -35,7 +37,9 @@ export default class CartItemController {
       const cartItem = await CartItem.create(cartItemData)
       return response.status(201).json({ message: 'CartItem created successfully', data: cartItem })
     } catch (error) {
-      return response.status(500).json({ message: 'Error creating cart item', error: error.message })
+      return response
+        .status(500)
+        .json({ message: 'Error creating cart item', error: error.message })
     }
   }
 
@@ -50,7 +54,9 @@ export default class CartItemController {
       await cartItem.save()
       return response.json({ message: 'CartItem updated successfully', data: cartItem })
     } catch (error) {
-      return response.status(500).json({ message: 'Error updating cart item', error: error.message })
+      return response
+        .status(500)
+        .json({ message: 'Error updating cart item', error: error.message })
     }
   }
 
@@ -63,7 +69,9 @@ export default class CartItemController {
       await cartItem.delete()
       return response.status(200).json({ message: 'CartItem Deleted Successfully' })
     } catch (error) {
-      return response.status(500).json({ message: 'Error deleting cart item', error: error.message })
+      return response
+        .status(500)
+        .json({ message: 'Error deleting cart item', error: error.message })
     }
   }
 }
