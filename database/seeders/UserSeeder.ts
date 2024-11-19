@@ -12,10 +12,10 @@ export default class UserSeeder extends BaseSeeder {
         name: 'Wesley Maciel',
       },
       {
-        username: 'jacinto11',
-        email: 'jacinto11@hotmail.com',
+        username: 'user123',
+        email: 'testUser11@hotmail.com',
         password: await Hash.make('password123'), // Hashing the password
-        name: 'Jacinto Barroso',
+        name: 'Test User Info',
       },
     ])
   }
