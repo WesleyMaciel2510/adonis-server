@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@adonisjs/core": "^5.4.2",
+    "@adonisjs/generic-exceptions": "^3.0.1",
     "@adonisjs/lucid": "^16.3.2",
     "@adonisjs/repl": "^3.1.8",
     "argon2": "^0.41.1",
