@@ -1,0 +1,32 @@
+# docs/swagger/auth.yml
+
+/api/auth/login:
+  post:
+    tags:
+      - Auth
+    description: Login to the application
+    parameters:
+      - name: credentials
+        in: body
+        required: true
+        schema:
+          properties:
+            phone:
+              type: string
+              example: '1234567890'
+              required: true
+            password:
+              type: string
+              example: 'supersecretpassword'
+              required: true
+    responses:
+      200:
+        description: Successfully authenticated
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'User authenticated successfully'

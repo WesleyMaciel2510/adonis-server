@@ -1,0 +1,204 @@
+# docs/swagger/users.yml
+
+/api/users:
+  get:
+    tags:
+      - User
+    description: Get a list of all users
+    responses:
+      200:
+        description: Successfully retrieved users
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      username:
+                        type: string
+                        example: 'john_doe'
+                      name:
+                        type: string
+                        example: 'John Doe'
+                      email:
+                        type: string
+                        example: 'john.doe@example.com'
+
+  post:
+    tags:
+      - User
+    description: Create a new user
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+                example: 'new_user'
+              name:
+                type: string
+                example: 'New User'
+              email:
+                type: string
+                example: 'new.user@example.com'
+              password:
+                type: string
+                example: 'securepassword123'
+    responses:
+      201:
+        description: Successfully created user
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'User created successfully'
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 2
+                    username:
+                      type: string
+                      example: 'new_user'
+                    name:
+                      type: string
+                      example: 'New User'
+                    email:
+                      type: string
+                      example: 'new.user@example.com'
+      500:
+        description: Error creating user
+
+/api/users/{id}:
+  get:
+    tags:
+      - User
+    description: Show a single user by its ID
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 1
+    responses:
+      200:
+        description: Successfully retrieved the user
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    username:
+                      type: string
+                      example: 'john_doe'
+                    name:
+                      type: string
+                      example: 'John Doe'
+                    email:
+                      type: string
+                      example: 'john.doe@example.com'
+      404:
+        description: User not found
+
+  put:
+    tags:
+      - User
+    description: Update an existing user
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 1
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+                example: 'updated_user'
+              name:
+                type: string
+                example: 'Updated User'
+              email:
+                type: string
+                example: 'updated.user@example.com'
+              password:
+                type: string
+                example: 'newsecurepassword456'
+    responses:
+      200:
+        description: Successfully updated user
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'User updated successfully'
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    username:
+                      type: string
+                      example: 'updated_user'
+                    name:
+                      type: string
+                      example: 'Updated User'
+                    email:
+                      type: string
+                      example: 'updated.user@example.com'
+      500:
+        description: Error updating user
+
+  delete:
+    tags:
+      - User
+    description: Delete a user by its ID
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 1
+    responses:
+      200:
+        description: Successfully deleted user
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'User Deleted Successfully'
+      500:
+        description: Error deleting user

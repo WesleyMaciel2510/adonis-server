@@ -1,0 +1,276 @@
+# docs/swagger/products.yml
+
+/api/products:
+  get:
+    tags:
+      - Product
+    description: Get a list of all products
+    responses:
+      200:
+        description: Successfully retrieved products
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: 'Product Name'
+                      description:
+                        type: string
+                        example: 'Description of the product'
+                      price:
+                        type: number
+                        format: float
+                        example: 199.99
+                      quantityInStock:
+                        type: integer
+                        example: 50
+                      category:
+                        type: string
+                        example: 'Electronics'
+                      isActive:
+                        type: boolean
+                        example: true
+                      imageUrl:
+                        type: string
+                        example: 'http://example.com/product.jpg'
+
+  post:
+    tags:
+      - Product
+    description: Create a new product
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: 'New Product'
+              description:
+                type: string
+                example: 'Detailed description of the new product'
+              price:
+                type: number
+                format: float
+                example: 149.99
+              quantityInStock:
+                type: integer
+                example: 100
+              category:
+                type: string
+                example: 'Books'
+              isActive:
+                type: boolean
+                example: true
+              imageUrl:
+                type: string
+                example: 'http://example.com/new-product.jpg'
+    responses:
+      201:
+        description: Successfully created product
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'Product created successfully'
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 2
+                    name:
+                      type: string
+                      example: 'New Product'
+                    description:
+                      type: string
+                      example: 'Detailed description of the new product'
+                    price:
+                      type: number
+                      format: float
+                      example: 149.99
+                    quantityInStock:
+                      type: integer
+                      example: 100
+                    category:
+                      type: string
+                      example: 'Books'
+                    isActive:
+                      type: boolean
+                      example: true
+                    imageUrl:
+                      type: string
+                      example: 'http://example.com/new-product.jpg'
+      500:
+        description: Error creating product
+
+/api/products/{id}:
+  get:
+    tags:
+      - Product
+    description: Show a single product by its ID
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 1
+    responses:
+      200:
+        description: Successfully retrieved the product
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: 'Product Name'
+                    description:
+                      type: string
+                      example: 'Description of the product'
+                    price:
+                      type: number
+                      format: float
+                      example: 199.99
+                    quantityInStock:
+                      type: integer
+                      example: 50
+                    category:
+                      type: string
+                      example: 'Electronics'
+                    isActive:
+                      type: boolean
+                      example: true
+                    imageUrl:
+                      type: string
+                      example: 'http://example.com/product.jpg'
+      404:
+        description: Product not found
+
+  put:
+    tags:
+      - Product
+    description: Update an existing product
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 1
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: 'Updated Product Name'
+              description:
+                type: string
+                example: 'Updated description of the product'
+              price:
+                type: number
+                format: float
+                example: 249.99
+              quantityInStock:
+                type: integer
+                example: 80
+              category:
+                type: string
+                example: 'Furniture'
+              isActive:
+                type: boolean
+                example: true
+              imageUrl:
+                type: string
+                example: 'http://example.com/updated-product.jpg'
+    responses:
+      200:
+        description: Successfully updated product
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'Product updated successfully'
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: 'Updated Product Name'
+                    description:
+                      type: string
+                      example: 'Updated description of the product'
+                    price:
+                      type: number
+                      format: float
+                      example: 249.99
+                    quantityInStock:
+                      type: integer
+                      example: 80
+                    category:
+                      type: string
+                      example: 'Furniture'
+                    isActive:
+                      type: boolean
+                      example: true
+                    imageUrl:
+                      type: string
+                      example: 'http://example.com/updated-product.jpg'
+      500:
+        description: Error updating product
+
+  delete:
+    tags:
+      - Product
+    description: Delete a product by its ID
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 1
+    responses:
+      200:
+        description: Successfully deleted product
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'Product deleted successfully'
+      500:
+        description: Error deleting product

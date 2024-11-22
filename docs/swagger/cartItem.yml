@@ -1,0 +1,125 @@
+/api/cart-items:
+  get:
+    tags:
+      - CartItem
+    description: Get a list of all cart items
+    responses:
+      200:
+        description: Successfully retrieved cart items
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/CartItem'
+
+  post:
+    tags:
+      - CartItem
+    description: Create a new cart item
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              product_id:
+                type: integer
+                example: 1
+                description: The ID of the product
+              quantity:
+                type: integer
+                example: 1
+                description: The quantity of the product in the cart
+              user_id:
+                type: integer
+                example: 123
+                description: The ID of the user
+    responses:
+      201:
+        description: CartItem created successfully
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartItem'
+      500:
+        description: Error creating cart item
+
+/api/cart-items/{id}:
+  get:
+    tags:
+      - CartItem
+    description: Get a single cart item by its ID
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the cart item
+        schema:
+          type: integer
+    responses:
+      200:
+        description: Successfully retrieved the cart item
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartItem'
+      404:
+        description: CartItem not found
+
+  put:
+    tags:
+      - CartItem
+    description: Update an existing cart item
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the cart item to update
+        schema:
+          type: integer
+      - name: cartItem
+        in: body
+        required: true
+        description: The data to update the cart item
+        schema:
+          type: object
+          properties:
+            quantity:
+              type: integer
+              example: 2
+              description: The updated quantity of the cart item
+    responses:
+      200:
+        description: Cart item updated successfully
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartItem'
+      404:
+        description: CartItem not found
+      500:
+        description: Error updating cart item
+
+  delete:
+    tags:
+      - CartItem
+    description: Delete a cart item by its ID
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: The ID of the cart item to delete
+        schema:
+          type: integer
+    responses:
+      200:
+        description: Successfully deleted cart item
+      404:
+        description: CartItem not found
+      500:
+        description: Error deleting cart item

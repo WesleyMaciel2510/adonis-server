@@ -1,0 +1,216 @@
+# docs/swagger/stores.yml
+
+/api/stores:
+  get:
+    tags:
+      - Store
+    description: Get a list of all stores
+    responses:
+      200:
+        description: Successfully retrieved stores
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: 'Store Name'
+                      description:
+                        type: string
+                        example: 'Description of the store'
+                      location:
+                        type: string
+                        example: '123 Store Location'
+                      imageUrl:
+                        type: string
+                        example: 'http://example.com/store.jpg'
+
+  post:
+    tags:
+      - Store
+    description: Create a new store
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: 'New Store'
+              description:
+                type: string
+                example: 'Detailed description of the new store'
+              location:
+                type: string
+                example: '456 New Location'
+              imageUrl:
+                type: string
+                example: 'http://example.com/new-store.jpg'
+    responses:
+      201:
+        description: Successfully created store
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'Store created successfully'
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 2
+                    name:
+                      type: string
+                      example: 'New Store'
+                    description:
+                      type: string
+                      example: 'Detailed description of the new store'
+                    location:
+                      type: string
+                      example: '456 New Location'
+                    imageUrl:
+                      type: string
+                      example: 'http://example.com/new-store.jpg'
+      500:
+        description: Error creating store
+
+/api/stores/{id}:
+  get:
+    tags:
+      - Store
+    description: Show a single store by its ID
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 1
+    responses:
+      200:
+        description: Successfully retrieved the store
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: 'Store Name'
+                    description:
+                      type: string
+                      example: 'Description of the store'
+                    location:
+                      type: string
+                      example: '123 Store Location'
+                    imageUrl:
+                      type: string
+                      example: 'http://example.com/store.jpg'
+      404:
+        description: Store not found
+
+  put:
+    tags:
+      - Store
+    description: Update an existing store
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 1
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: 'Updated Store Name'
+              description:
+                type: string
+                example: 'Updated description of the store'
+              location:
+                type: string
+                example: '789 Updated Location'
+              imageUrl:
+                type: string
+                example: 'http://example.com/updated-store.jpg'
+    responses:
+      200:
+        description: Successfully updated store
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'Store updated successfully'
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: 'Updated Store Name'
+                    description:
+                      type: string
+                      example: 'Updated description of the store'
+                    location:
+                      type: string
+                      example: '789 Updated Location'
+                    imageUrl:
+                      type: string
+                      example: 'http://example.com/updated-store.jpg'
+      500:
+        description: Error updating store
+
+  delete:
+    tags:
+      - Store
+    description: Delete a store by its ID
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 1
+    responses:
+      200:
+        description: Successfully deleted store
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'Store deleted successfully'
+      500:
+        description: Error deleting store

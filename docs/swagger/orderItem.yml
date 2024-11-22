@@ -1,0 +1,220 @@
+# docs/swagger/order-items.yml
+
+/api/order-items:
+  get:
+    tags:
+      - OrderItem
+    description: Get a list of all order items
+    responses:
+      200:
+        description: Successfully retrieved order items
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      productId:
+                        type: integer
+                        example: 101
+                      amount:
+                        type: integer
+                        example: 2
+                      product:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                            example: 'Product Name'
+                          price:
+                            type: number
+                            format: float
+                            example: 99.99
+
+/api/order-items/{id}:
+  get:
+    tags:
+      - OrderItem
+    description: Show a single order item by its ID
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 1
+    responses:
+      200:
+        description: Successfully retrieved the order item
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    productId:
+                      type: integer
+                      example: 101
+                    amount:
+                      type: integer
+                      example: 2
+                    product:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: 'Product Name'
+                        price:
+                          type: number
+                          format: float
+                          example: 99.99
+      404:
+        description: Order item not found
+
+  post:
+    tags:
+      - OrderItem
+    description: Create a new order item
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              productId:
+                type: integer
+                example: 101
+              amount:
+                type: integer
+                example: 2
+    responses:
+      201:
+        description: Successfully created order item
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'Order item created successfully'
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    productId:
+                      type: integer
+                      example: 101
+                    amount:
+                      type: integer
+                      example: 2
+                    product:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: 'Product Name'
+                        price:
+                          type: number
+                          format: float
+                          example: 99.99
+      500:
+        description: Error creating order item
+
+  put:
+    tags:
+      - OrderItem
+    description: Update an existing order item
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 1
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              productId:
+                type: integer
+                example: 101
+              amount:
+                type: integer
+                example: 2
+    responses:
+      200:
+        description: Successfully updated order item
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'Order item updated successfully'
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    productId:
+                      type: integer
+                      example: 101
+                    amount:
+                      type: integer
+                      example: 2
+                    product:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: 'Product Name'
+                        price:
+                          type: number
+                          format: float
+                          example: 99.99
+      500:
+        description: Error updating order item
+
+  delete:
+    tags:
+      - OrderItem
+    description: Delete an order item by its ID
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 1
+    responses:
+      200:
+        description: Successfully deleted order item
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'Order item deleted successfully'
+      500:
+        description: Error deleting order item

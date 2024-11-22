@@ -1,0 +1,216 @@
+# docs/swagger/orders.yml
+
+/api/orders:
+  get:
+    tags:
+      - Order
+    description: Get a list of all orders
+    responses:
+      200:
+        description: Successfully retrieved orders
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      userId:
+                        type: integer
+                        example: 101
+                      totalPrice:
+                        type: number
+                        format: float
+                        example: 200.99
+                      status:
+                        type: string
+                        example: 'pending'
+                      paymentMethod:
+                        type: string
+                        example: 'credit_card'
+
+/api/orders/{id}:
+  get:
+    tags:
+      - Order
+    description: Show a single order by its ID
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 1
+    responses:
+      200:
+        description: Successfully retrieved the order
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    userId:
+                      type: integer
+                      example: 101
+                    totalPrice:
+                      type: number
+                      format: float
+                      example: 200.99
+                    status:
+                      type: string
+                      example: 'pending'
+                    paymentMethod:
+                      type: string
+                      example: 'credit_card'
+      404:
+        description: Order not found
+
+  post:
+    tags:
+      - Order
+    description: Create a new order
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              userId:
+                type: integer
+                example: 101
+              totalPrice:
+                type: number
+                format: float
+                example: 200.99
+              status:
+                type: string
+                example: 'pending'
+              paymentMethod:
+                type: string
+                example: 'credit_card'
+    responses:
+      201:
+        description: Successfully created order
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'Order created successfully'
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    userId:
+                      type: integer
+                      example: 101
+                    totalPrice:
+                      type: number
+                      format: float
+                      example: 200.99
+                    status:
+                      type: string
+                      example: 'pending'
+                    paymentMethod:
+                      type: string
+                      example: 'credit_card'
+      500:
+        description: Error creating order
+
+  put:
+    tags:
+      - Order
+    description: Update an existing order
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 1
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              totalPrice:
+                type: number
+                format: float
+                example: 250.00
+              status:
+                type: string
+                example: 'shipped'
+    responses:
+      200:
+        description: Successfully updated order
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'Order updated successfully'
+                data:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    userId:
+                      type: integer
+                      example: 101
+                    totalPrice:
+                      type: number
+                      format: float
+                      example: 250.00
+                    status:
+                      type: string
+                      example: 'shipped'
+                    paymentMethod:
+                      type: string
+                      example: 'credit_card'
+      500:
+        description: Error updating order
+
+  delete:
+    tags:
+      - Order
+    description: Delete an order by its ID
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 1
+    responses:
+      200:
+        description: Successfully deleted order
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                  example: 'Order deleted successfully'
+      500:
+        description: Error deleting order
