@@ -1,7 +1,9 @@
 {
   "extends": "./node_modules/adonis-preset-ts/tsconfig",
   "include": [
-    "**/*"
+    "**/*",
+    "bin/**/*.ts",
+    "tests/**/*.ts"
   ],
   "exclude": [
     "node_modules",
@@ -32,6 +34,13 @@
       "@adonisjs/lucid",
       "adonis5-swagger",
       "@adonisjs/view"
-    ]
+    ],
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   }
 }
